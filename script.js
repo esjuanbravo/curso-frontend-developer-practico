@@ -1,30 +1,53 @@
+// variables de menu derecho desktop 
 const menuEmail = document.querySelector('.navbar-email');
+const menuHamIcon = document.querySelector('.menu');
+
+// variables de menu compras para accion
+const menuCarritoIcon = document.querySelector('.navbar-shopping-cart');
 const desktopMenu = document.querySelector('.desktop-menu');
+//varibles para en menu izquierdo para mobile
+const mobileMenu = document.querySelector('.mobile-menu');
+const aside = document.querySelector('.product-detail');
 
-// variables mobile
-const mobileLogoMenu = document.querySelector('.menu');
-const toggleMobileMenu = document.querySelector('.mobile-menu');
+// declaracion de acciones 
 
-//botones de mi orden y mi cuenta
-const myOrdens = document.querySelector('.my-orders');
-const myAccount = document.querySelector('.my-account');
+menuEmail.addEventListener('click', toggleDesktopMenu);
+menuHamIcon.addEventListener('click', toggleMobileMenu);
+menuCarritoIcon.addEventListener('click', toggleCarritoAside);
 
-// variables del caarrito 
-const contaddorCarritoCompras = document.getElementsByName('a');
-const carritoCompras = document.querySelector('.carrito-icon');
-var numeroProducto = 0;
+//funciones del Toggle menu desktop
 
-//funionalidades en desktop
-menuEmail.addEventListener('click', toggleMenuDesktop);
+function toggleDesktopMenu() {
+  const isAsideClosed = aside.classList.contains('inactive');
 
-function toggleMenuDesktop() {
-    desktopMenu.classList.toggle('inactive')
+  if (!isAsideClosed) {
+    aside.classList.add('inactive');
+  }
+  
+  desktopMenu.classList.toggle('inactive');
 }
 
-// funcionalidades en mobile
-mobileLogoMenu.addEventListener('click',toggleMenuMobile);
+// funciones del Toggle menu mobile
+function toggleMobileMenu() {
+  const isAsideClosed = aside.classList.contains('inactive');
 
-function toggleMenuMobile() {
-    toggleMobileMenu.classList.toggle('inactive')
-    
+  if (!isAsideClosed) {
+    aside.classList.add('inactive'); 
+  }
+  
+  mobileMenu.classList.toggle('inactive');
+}
+
+// funciones del Aside
+function toggleCarritoAside() {
+  const isMobileMenuClosed = mobileMenu.classList.contains('inactive');
+  
+  if (!isMobileMenuClosed) {
+    mobileMenu.classList.add('inactive'); 
+  }else if (isMobileMenuClosed){
+    desktopMenu.classList.add('inactive')
+  }
+
+  
+  aside.classList.toggle('inactive');
 }
