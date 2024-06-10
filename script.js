@@ -7,23 +7,27 @@ const menuCarritoIcon = document.querySelector('.navbar-shopping-cart');
 const desktopMenu = document.querySelector('.desktop-menu');
 //varibles para en menu izquierdo para mobile
 const mobileMenu = document.querySelector('.mobile-menu');
-const aside = document.querySelector('.product-detail');
+const shoppingCartContainer = document.querySelector('#shoppingCartContainer');
 //variables para el contenedor
 const cardsContainer = document.querySelector('.cards-container');
+// variables del product detail
+const productDetail = document.querySelector('#productDetail');
+const productDetailClose =document.querySelector('.product-detail-close');
 
-// declaracion de acciones
+// declaracion de eventos
 
 menuEmail.addEventListener('click', toggleDesktopMenu);
 menuHamIcon.addEventListener('click', toggleMobileMenu);
 menuCarritoIcon.addEventListener('click', toggleCarritoAside);
 
+
 //funciones del Toggle menu desktop
 
 function toggleDesktopMenu() {
-  const isAsideClosed = aside.classList.contains('inactive');
+  const isAsideClosed = shoppingCartContainer.classList.contains('inactive');
 
   if (!isAsideClosed) {
-    aside.classList.add('inactive');
+    shoppingCartContainer.classList.add('inactive');
   }
 
   desktopMenu.classList.toggle('inactive');
@@ -31,10 +35,10 @@ function toggleDesktopMenu() {
 
 // funciones del Toggle menu mobile
 function toggleMobileMenu() {
-  const isAsideClosed = aside.classList.contains('inactive');
+  const isAsideClosed = shoppingCartContainer.classList.contains('inactive');
 
   if (!isAsideClosed) {
-    aside.classList.add('inactive');
+    shoppingCartContainer.classList.add('inactive');
   }
 
   mobileMenu.classList.toggle('inactive');
@@ -50,9 +54,13 @@ function toggleCarritoAside() {
     desktopMenu.classList.add('inactive')
   }
 
-  aside.classList.toggle('inactive');
+  shoppingCartContainer.classList.toggle('inactive');
 }
-
+//funcion del porduct detail
+productDetailClose.addEventListener('click', closeProductDatail)
+function closeProductDatail() {
+  productDetail.classList.add('inactive')
+}
 // se va a crear html en js con asignacion de valores a travez de objetos y ciclos
 const productList = [];
 
@@ -109,6 +117,10 @@ function renderProduct(arr) {
 
     const productImg = document.createElement('img');
     productImg.setAttribute('src', product.image);
+    productImg.addEventListener('click', openProductDetail)
+    function openProductDetail() {
+      productDetail.classList.remove('inactive')
+    }
 
     const productInfo = document.createElement('div');
     productInfo.classList.add('product-info');
